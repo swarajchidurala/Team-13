@@ -1,224 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EduPlatform</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #f8faff;
-      color: #333;
-    }
-
-    /* Navbar */
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding:0px 50px;
-      background: #fff;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-    header h1 {
-      /* font-size: 1.5em;
-      line-height: 2em;
-      color: #111827; */
-    display: block;
-    font-size: 2em;
-    margin-block-start: 0.67em;
-    margin-block-end: 0.67em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    font-weight: bold;
-    unicode-bidi: isolate;
-
-    }
-    nav a {
-      margin: 0 15px;
-      text-decoration: none;
-      color: #333;
-      font-weight: 500;
-      transition: transform 0.2s;
-    }
-    nav a:hover {
-        color: #0056b3;
-        transform: scale(1.05);
-    }
-    .btn-primary {
-      background: #2d6cff;
-      color: #fff;
-      padding: 10px 20px;
-      border-radius: 6px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: transform 0.2s;
-    }
-    .btn-primary:hover {
-      transform: scale(1.05);
-      background: #1a4ed8;
-    }
-
-    /* Hero Section */
-    .hero {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 60px 80px;
-    }
-    .hero-text {
-      max-width: 50%;
-    }
-    .hero-text h2 {
-      font-size: 48px;
-      margin: 0;
-    }
-    .hero-text h2 span {
-      color: #6a5cff;
-    }
-    .hero-text p {
-      margin: 20px 0;
-      font-size: 18px;
-      line-height: 1.6;
-    }
-    .hero-buttons a {
-      display: inline-block;
-      margin-right: 15px;
-      padding: 12px 20px;
-      border-radius: 6px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    .btn-blue {
-      background: #2d6cff;
-      color: #fff;
-    }
-    .btn-outline {
-      border: 2px solid #2d6cff;
-      color: #2d6cff;
-      background: #fff;
-      transition: transform 0.2s;
-    }
-    .btn-outline:hover {
-      transform: scale(1.05);
-      background: #1a4ed8;
-    }
-    .stats {
-      margin-top: 20px;
-      display: flex;
-      align-items: center;
-      font-size: 14px;
-    }
-    .stats span {
-      margin-left: 15px;
-    }
-
-    /* Card Section */
-    .card {
-      background: #fff;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-      max-width: 400px;
-    }
-    .card img {
-      width: 100%;
-      border-radius: 10px;
-    }
-    .card h3 {
-      margin: 15px 0 5px;
-    }
-    .progress-bar {
-      background: #eee;
-      border-radius: 10px;
-      overflow: hidden;
-      height: 10px;
-      margin: 10px 0;
-    }
-    .progress {
-      background: #6a5cff;
-      height: 100%;
-      width: 68%;
-    }
-    .badge {
-      display: inline-block;
-      background: #e0f7e9;
-      color: #28a745;
-      padding: 5px 10px;
-      border-radius: 20px;
-      font-size: 12px;
-      margin-top: 10px;
-    }
-    .new-lesson {
-      margin-top: 10px;
-      font-size: 13px;
-      color: #6a5cff;
-      font-weight: bold;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduPlatform</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
 </head>
 <body>
 
+    <header class="navbar">
+        <div class="container">
+            <a href="#" class="logo">EduPlatform</a>
+            <nav class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#courses">Courses</a>
+                <a href="#reviews">Reviews</a>
+                <a href="#pricing">Pricing</a>
+            </nav>
+            <button class="btn btn-primary">Get Started</button>
+        </div>
+    </header>
 
-  <header>
-    <h1>EduPlatform</h1>
-    <nav>
-      <a href="#">Features</a>
-      <a href="#">Courses</a>
-      <a href="#">Reviews</a>
-      <a href="#">Pricing</a>
-    </nav>
-    <a href="#" class="btn-primary">Get Started</a>
-  </header>
+    <main>
+        <section class="hero-section">
+            <div class="container">
+                <div class="hero-content">
+                    <p class="goal-achieved">
+                        <i class="ri-checkbox-circle-fill"></i>
+                        Goal Achieved!
+                    </p>
+                    <h1>Unlock Your Potential</h1>
+                    <p>Master in-demand skills with personalized learning paths, expert instructors, and AI-powered recommendations. Get certified and advance your career.</p>
+                    <div class="hero-buttons">
+                        <button class="btn btn-secondary">Start Free Trial</button>
+                        <button class="btn btn-outline">
+                            <i class="ri-play-circle-fill"></i>
+                            Watch Demo
+                        </button>
+                    </div>
+                    <div class="user-stats">
+                        <div class="user-avatars">
+                            <img src="https://via.placeholder.com/40" alt="User Avatar">
+                            <img src="https://via.placeholder.com/40" alt="User Avatar">
+                            <img src="https://via.placeholder.com/40" alt="User Avatar">
+                        </div>
+                        <span>1M+ active learners</span>
+                        <div class="rating">
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-half-fill"></i>
+                            <span>4.9/5 rating</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-image-card">
+                    <img src="https://via.placeholder.com/500x350" alt="Interactive Learning">
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="ri-book-open-line"></i>
+                            <span>Interactive Learning</span>
+                        </div>
+                        <p>Hands-on projects & real-world applications</p>
+                        <div class="progress-bar">
+                            <span>Course Progress</span>
+                            <div class="progress-container">
+                                <div class="progress-fill" style="width: 68%;"></div>
+                                <span>68%</span>
+                            </div>
+                        </div>
+                        <div class="new-lesson-tag">
+                            New Lesson Available
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
+        
+    </main>
 
-  <section class="hero">
-    <div class="hero-text">
-      <p>✅ Trusted by 1M+ Students</p>
-      <h2>Unlock Your <span>Potential</span></h2>
-      <p>Master in-demand skills with personalized learning paths, expert instructors, and AI-powered recommendations. Get certified and advance your career.</p>
-      <div class="hero-buttons">
-        <a href="#" class="btn-primary">Start Free Trial</a>
-        <a href="#" class="btn-outline">Watch Demo</a>
-      </div>
-      <div class="stats">
-        <span>👥 1M+ active learners</span>
-        <span>⭐ 4.9/5 rating</span>
-      </div>
-    </div>
-
-    <div class="card">
-      <img src="https://images.pexels.com/photos/3184328/pexels-photo-3184328.jpeg" alt="Students learning">
-      <h3>Interactive Learning</h3>
-      <p>Hands-on projects & real-world applications</p>
-      <div class="progress-bar">
-        <div class="progress"></div>
-      </div>
-      <p>Course Progress: 68%</p>
-      <span class="badge">🎯 Goal Achieved!</span>
-      <div class="new-lesson">📚 New Lesson Available</div>
-    </div>
-  </section>
-
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const progress = document.querySelector(".progress");
-      let width = 0;
-      const interval = setInterval(() => {
-        if (width >= 68) {
-          clearInterval(interval);
-        } else {
-          width++;
-          progress.style.width = width + "%";
-        }
-      }, 20);
-    });
-  </script>
-
+    <script src="script.js"></script>
 </body>
 </html>
