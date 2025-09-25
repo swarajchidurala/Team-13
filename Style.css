@@ -357,8 +357,8 @@ p {
     justify-content: center;
     overflow-x: auto;
     padding-bottom: 20px;
-    scrollbar-width: thin;
-    scrollbar-color: var(--primary-color) var(--background-color);
+    /* scrollbar-width: thin;
+    scrollbar-color: var(--primary-color) var(--background-color); */
 }
 
 .course-list::-webkit-scrollbar {
