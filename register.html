@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - EduPlatfrom</title>
+    <style>
+        /* General Body and Container Styles */
+        body {
+            font-family: 'Inter', sans-serif; /* A modern, clean font like the image */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f8faff; /* Light background to match EduPlatfrom theme */
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .register-container {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            width: 100%;
+            max-width: 450px; /* Slightly wider for more fields */
+            text-align: center;
+            border: 1px solid #e0e0e0;
+        }
+
+        /* Logo and Heading */
+        .register-container .logo-brand {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 30px;
+            color: #4A4AFB; /* Primary brand color from the image */
+            font-size: 1.8em;
+            font-weight: 700;
+        }
+
+        .register-container .logo-brand svg {
+            margin-right: 10px;
+            fill: #4A4AFB;
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 25px;
+            font-size: 1.8em;
+            font-weight: 600;
+        }
+
+        /* Form Styling */
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+            position: relative; /* Added for relative positioning of the wrapper */
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 500;
+        }
+
+        /* Wrapper for Input and Icon */
+        .input-with-icon {
+            position: relative;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            box-sizing: border-box;
+            /* Added padding-right to make room for the icon */
+            padding-right: 45px; 
+        }
+
+        .form-group input:focus {
+            border-color: #4A4AFB;
+            box-shadow: 0 0 0 3px rgba(74, 74, 251, 0.2);
+            outline: none;
+        }
+
+        /* Styles for the SVG Eye Icon */
+        .toggle-password {
+            position: absolute;
+            top: 50%;
+            right: 15px;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #999;
+            transition: color 0.3s;
+            z-index: 10;
+        }
+        
+        .toggle-password:hover {
+            color: #555;
+        }
+        
+        .toggle-password svg {
+            width: 20px; /* Adjust size for a minimalist look */
+            height: 20px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        /* Hide the slash part of the icon when password is shown */
+        .eye-slash-line {
+            transition: opacity 0.3s;
+        }
+
+        /* When the 'show' class is present (i.e., password is visible), hide the slash line */
+        .toggle-password.show .eye-slash-line {
+            opacity: 0;
+        }
+
+
+        .btn-primary {
+            width: 100%;
+            padding: 14px 20px;
+            background-color: #4A4AFB;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        .btn-primary:hover {
+            background-color: #3a3ad0;
+            box-shadow: 0 5px 15px rgba(74, 74, 251, 0.3);
+        }
+
+        .login-link {
+            margin-top: 30px;
+            font-size: 0.95em;
+            color: #666;
+        }
+
+        .login-link a {
+            color: #4A4AFB;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .login-link a:hover {
+            color: #3a3ad0;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 480px) {
+            .register-container {
+                padding: 30px 20px;
+                margin: 0 15px;
+            }
+            h2 {
+                font-size: 1.6em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="register-container">
+        <div class="logo-brand">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2L2 7V17L12 22L22 17V7L12 2ZM12 4.09L19.49 8.29L12 12.49L4.51 8.29L12 4.09ZM4 10.42L11 14.39V20.11L4 16.29V10.42ZM13 20.11V14.39L20 10.42V16.29L13 20.11Z" fill="currentColor"/>
+            </svg>
+            EduPlatfrom
+        </div>
+        <h2>Create Your Account</h2>
+        <form action="#" method="POST">
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" placeholder="John Doe" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" placeholder="you@example.com" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Password</label>
+                <div class="input-with-icon">
+                    <input type="password" id="password" name="password" placeholder="••••••••" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="confirm-password">Confirm Password</label>
+                <div class="input-with-icon">
+                    <input type="password" id="confirm-password" name="confirm-password" placeholder="••••••••" required>
+                    <div class="toggle-password" data-target="confirm-password" id="toggleConfirmPassword">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                            <circle cx="12" cy="12" r="3" />
+                            <line x1="2" y1="2" x2="22" y2="22" class="eye-slash-line" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="btn-primary">Register</button>
+        </form>
+        <div class="login-link">
+            Already have an account? <a href="login.html">Log In</a>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Get all password toggles
+            const toggles = document.querySelectorAll('.toggle-password');
+
+            toggles.forEach(toggle => {
+                toggle.addEventListener('click', function () {
+                    // Get the ID of the target input from the data-target attribute
+                    const targetId = this.getAttribute('data-target');
+                    const passwordInput = document.getElementById(targetId);
+
+                    // Toggle the type attribute
+                    const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                    passwordInput.setAttribute('type', type);
+                    
+                    // Toggle the 'show' class on the icon element to change its appearance
+                    this.classList.toggle('show');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
