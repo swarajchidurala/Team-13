@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="icon.png" type="image/x-icon">
     <title>Login - EduPlatfrom</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <style>
@@ -140,6 +141,11 @@
             transition: background-color 0.3s, box-shadow 0.3s;
         }
 
+        .btn-primary a {
+            text-decoration: none;
+            color: white;
+        }
+
         .btn-primary:hover {
             background-color: #3a3ad0;
             box-shadow: 0 5px 15px rgba(74, 74, 251, 0.3);
@@ -172,6 +178,51 @@
                 font-size: 1.6em;
             }
         }
+        .tabs{
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            border-radius: 6px;
+            /* overflow: hidden; */
+            height: 35px;
+            background-color: #efefef;
+        }
+
+
+        .tab{
+            flex: 1;
+            cursor: pointer;
+            border: none;
+            outline: none;
+            background: #efefef;
+            margin: 4px;
+            font-size:medium;
+            font-weight:300;
+            border-radius: 6px;
+            color:#797979 ;
+        }
+
+        .tab:hover{
+            color: black;
+        }
+        .tab.active {
+            background: #ffffff;
+            margin: 3px;
+            font-size:medium;
+            font-weight:300;
+            border-radius: 6px;
+            color:#4A4AFB ;
+        }
+
+        @media (max-width: 480px) {
+            .register-container {
+                padding: 30px 20px;
+                margin: 0 15px;
+            }
+            h2 {
+                font-size: 1.6em;
+            }
+        }
     </style>
 </head>
 <body>
@@ -180,10 +231,18 @@
             <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M12 2L2 7V17L12 22L22 17V7L12 2ZM12 4.09L19.49 8.29L12 12.49L4.51 8.29L12 4.09ZM4 10.42L11 14.39V20.11L4 16.29V10.42ZM13 20.11V14.39L20 10.42V16.29L13 20.11Z" fill="currentColor"/>
             </svg>
-            EduPlatfrom
+            EduPlatform
         </div>
         <h2>Welcome Back!</h2>
         <form action="#" method="POST">
+            <div class="tabs">
+                <button type="button" id="studentTab" class="tab active">Student</button>
+                <button type="button" id="parentTab" class="tab">Parent</button>
+            </div>
+            <div class="form-group" id="childNameField" style="display: none;">
+                <label for="name">Child Name</label>
+                <input type="text" id="name" name="name" placeholder="Swaraj" required>
+            </div>
             <div class="form-group">
                 <label for="email">Email Address</label>
                 <input type="email" id="email" name="email" placeholder="you@example.com" required>
@@ -198,7 +257,7 @@
             <div class="forgot-password">
                 <a href="#">Forgot Password?</a>
             </div>
-            <button type="submit" class="btn-primary">Log In</button>
+            <button type="submit" class="btn-primary" id="loginBtn">Log In</button>
         </form>
         <div class="signup-link">
             Don't have an account? <a href="register.html">Sign Up</a>
@@ -220,6 +279,47 @@
                 this.classList.toggle('fa-eye-slash');
             });
         });
+
+
+        const tabs = document.querySelectorAll(".tab");
+            tabs.forEach(tab => {
+            tab.addEventListener("click", () => {
+                tabs.forEach(t => t.classList.remove("active"));
+                tab.classList.add("active");
+            });
+        });
+
+
+    const studentTab = document.getElementById("studentTab");
+    const parentTab = document.getElementById("parentTab");
+    const childNameField = document.getElementById("childNameField");
+
+    studentTab.addEventListener("click", () => {
+    studentTab.classList.add("active");
+    parentTab.classList.remove("active");
+    childNameField.style.display= "none"; // Hide child name
+    });
+
+    parentTab.addEventListener("click", () => {
+    parentTab.classList.add("active");
+    studentTab.classList.remove("active");
+    childNameField.style.display= "block"; // Show child name
+    });
+
+
+    document.getElementById("loginBtn").addEventListener("click", function() {
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+
+        // Simple validation
+        if (email === "" || password === "") {
+            alert("Please fill in both fields.");
+        } else {
+            // Redirect to next page (example: dashboard.html)
+            window.location.href = "student_page.html";
+        }
+        });
+
     </script>
 </body>
 </html>

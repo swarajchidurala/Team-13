@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="icon.png" type="image/x-icon">
     <title>Register - EduPlatfrom</title>
     <style>
         /* General Body and Container Styles */
@@ -142,6 +143,7 @@
         .btn-primary:hover {
             background-color: #3a3ad0;
             box-shadow: 0 5px 15px rgba(74, 74, 251, 0.3);
+            outline: none;
         }
 
         .login-link {
@@ -161,6 +163,78 @@
             color: #3a3ad0;
         }
 
+         .tabs{
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            border-radius: 6px;
+            /* overflow: hidden; */
+            height: 35px;
+            background-color: #efefef;
+        }
+
+
+        .tab{
+            flex: 1;
+            cursor: pointer;
+            border: none;
+            outline: none;
+            background: #efefef;
+            margin: 4px;
+            font-size:medium;
+            font-weight:300;
+            border-radius: 6px;
+            color:#797979 ;
+        }
+
+        .tab:hover{
+            color: black;
+        }
+        .tab.active {
+            background: #ffffff;
+            margin: 3px;
+            font-size:medium;
+            font-weight:300;
+            border-radius: 6px;
+            color:#4A4AFB ;
+        }
+
+        /* Confirmation Message Styling */
+        .confirm-message {
+            color: #52c41a;
+            background-color: #f6ffed;
+            border: 1px solid #b7eb8f;
+            padding: 1px;
+            margin: 0 auto 10px auto;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            display: none; /* Hidden by default, shown when there's a confirmation */
+            font-size: 0.9em;
+        }
+        .confirm-message p {
+            margin: 5px;
+        }
+        /* Error Message Styling */
+        .error-message {
+            color: #ff4d4f;
+            background-color: #fff1f0;
+            border: 1px solid #ffa39e;
+            padding: 1px;
+            margin: 0 auto 10px auto;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            display: none; /* Hidden by default, shown when there's an error */
+            font-size: 0.9em;
+        }
+        .error-message p {
+            margin: 5px;
+        }
+        
+        .error {
+            border-color: #ff4d4f !important;
+            box-shadow: 0 0 0 3px rgba(255, 77, 79, 0.2) !important;
+        }
+
         /* Responsive Adjustments */
         @media (max-width: 480px) {
             .register-container {
@@ -171,6 +245,7 @@
                 font-size: 1.6em;
             }
         }
+
     </style>
 </head>
 <body>
@@ -182,16 +257,26 @@
             EduPlatfrom
         </div>
         <h2>Create Your Account</h2>
-        <form action="#" method="POST">
+        <form action="#" method="POST" id="registerForm">
+            <div class="tabs">
+                <button type="button" id="studentTab" class="tab active">Student</button>
+                <button type="button" id="parentTab" class="tab">Parent</button>
+            </div>
+            <div id="error-message" class="error-message"></div>
+            <div id="confirm-message" class="confirm-message"></div>
             <div class="form-group">
                 <label for="name">Full Name</label>
-                <input type="text" id="name" name="name" placeholder="John Doe" required>
+                <input type="text" id="name" name="name" placeholder="Chidurala Sampath" required>
+            </div>
+            <div class="form-group" id="childNameField" style="display: none;">
+                <label for="name">Child Name</label>
+                <input type="text" id="childname" name="childname" placeholder=" Chidurala Swaraj">
             </div>
             <div class="form-group">
                 <label for="email">Email Address</label>
                 <input type="email" id="email" name="email" placeholder="you@example.com" required>
             </div>
-            
+
             <div class="form-group">
                 <label for="password">Password</label>
                 <div class="input-with-icon">
@@ -213,7 +298,7 @@
                 </div>
             </div>
 
-            <button type="submit" class="btn-primary">Register</button>
+            <button type="submit" class="btn-primary" id="register-button">Register</button>
         </form>
         <div class="login-link">
             Already have an account? <a href="login.html">Log In</a>
@@ -240,6 +325,112 @@
                 });
             });
         });
+
+        const tabs = document.querySelectorAll(".tab");
+            tabs.forEach(tab => {
+            tab.addEventListener("click", () => {
+                tabs.forEach(t => t.classList.remove("active"));
+                tab.classList.add("active");
+            });
+        });
+
+
+        const studentTab = document.getElementById("studentTab");
+        const parentTab = document.getElementById("parentTab");
+        const childNameField = document.getElementById("childNameField");
+
+        // Initially, student tab is active, so child name not required
+        document.getElementById("childname").required = false;
+
+        studentTab.addEventListener("click", () => {
+        studentTab.classList.add("active");
+        parentTab.classList.remove("active");
+        childNameField.style.display= "none"; // Hide child name
+        document.getElementById("childname").required = false;
+        });
+
+        parentTab.addEventListener("click", () => {
+        parentTab.classList.add("active");
+        studentTab.classList.remove("active");
+        childNameField.style.display= "block"; // Show child name
+        document.getElementById("childname").required = true;
+        });
+
+        document.getElementById("registerForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        // Hide previous messages
+        document.getElementById("error-message").style.display = 'none';
+        document.getElementById("confirm-message").style.display = 'none';
+
+        const name = document.getElementById("name");
+        const email = document.getElementById("email");
+        const password = document.getElementById("password");
+        const confirmPassword = document.getElementById("confirm-password");
+        const childname = document.getElementById("childname");
+
+        // Reset error styles
+        name.classList.remove("error");
+        email.classList.remove("error");
+        password.classList.remove("error");
+        confirmPassword.classList.remove("error");
+        childname.classList.remove("error");
+
+        let isValid = true;
+        let errorMsg = "";
+
+        // Check if student or parent
+        const isStudent = studentTab.classList.contains("active");
+
+        if (!name.value.trim()) {
+            name.classList.add("error");
+            isValid = false;
+            errorMsg += "Full Name is required. ";
+        }
+
+        if (!email.value.trim()) {
+            email.classList.add("error");
+            isValid = false;
+            errorMsg += "Email is required. ";
+        }
+
+        if (!password.value) {
+            password.classList.add("error");
+            isValid = false;
+            errorMsg += "Password is required. ";
+        }
+
+        if (!confirmPassword.value) {
+            confirmPassword.classList.add("error");
+            isValid = false;
+            errorMsg += "Confirm Password is required. ";
+        }
+
+        if (!isStudent && !childname.value.trim()) {
+            childname.classList.add("error");
+            isValid = false;
+            errorMsg += "Child Name is required for parents. ";
+        }
+
+        if (password.value && confirmPassword.value && password.value !== confirmPassword.value) {
+            password.classList.add("error");
+            confirmPassword.classList.add("error");
+            isValid = false;
+            errorMsg += "Passwords do not match. ";
+        }
+
+        if (isValid) {
+            document.getElementById("confirm-message").style.display = 'block';
+            document.getElementById("confirm-message").innerHTML = "<p> &#10003; Registration successful! Redirecting to login...</p>";
+            setTimeout(function() {
+                window.location.href = "login.html";
+            }, 3000); // Show message for 3 seconds before redirect
+        } else {
+            document.getElementById("error-message").innerHTML = "<p> &#9888; " + errorMsg + "</p>";
+            document.getElementById("error-message").style.display = 'block';
+        }
+        });
+
     </script>
 </body>
 </html>

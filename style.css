@@ -1,14 +1,14 @@
 :root {
-    --primary-color: #5552f5;
+    --primary-color: #2961eb;
     --secondary-color: #f0f0ff;
     --text-color-dark: #000000;
     --text-color-light: #666;
-    --background-color: #f7f7fa;
+    --background-image: linear-gradient(to top ,#ffffff,#f8feff,#e7f4f694);
     --white-color: #ffffff;
     --border-color: #e0e0e0;
     --hover-color: #1511fb;
     --raring-color:#ffc107;
-    --potential-color:linear-gradient(90deg, #5552f5, #dd00ff);
+    --potential-color:linear-gradient(90deg, #2961eb, #8f34ea);
     --font-family: 'Inter', sans-serif;
 }
 
@@ -141,7 +141,7 @@ p {
 
 /* Hero Section */
 .hero-section {
-    background-color: var(--background-color);
+    background-image: var(--background-image);
     padding: 80px 0;
 }
 
@@ -268,6 +268,7 @@ p {
     height: 100%;
     background: var(--potential-color);
     border-radius: 50px;
+    width:68%
 }
 
 .progress-container span {
@@ -530,19 +531,19 @@ p {
 .hero-footer {
     text-align: center;
     padding: 80px 20px;
-    background: linear-gradient(to bottom left, #6a66ff, #dd00ff ,#66bdff);
+    background: linear-gradient(30deg, #2961eb,#2961eb, #dd00ff , #2961eb, #2961eb);
     color: #fff;
 }
 
 .hero-footer h2 {
-    font-size: 50px;
+    font-size: 35px;
     margin-bottom: 15px;
     font-weight: bold;
     color: var(--white-color);
 }
 
 .hero-footer p {
-    font-size: 18px;
+    font-size: 15px;
     margin-bottom: 30px;
 }
 
@@ -633,20 +634,28 @@ p {
     }
 
 /* Animations */
-@keyframes popdown{
-    from {
-        transform: translateY(-100%);
+@keyframes bounceIn {
+    0% {
         opacity: 0;
-      }
-      to {
-        transform: translateY(0);
+        transform: translateY(-50px); /* Start far above */
+    }
+    60% {
         opacity: 1;
-      }
-}
+        transform: translateY(15px); /* Bounce down past final position */
+    }
+    80% {
+        transform: translateY(-5px); /* Bounce up slightly */
+    }
+    100% {
+        transform: translateY(0); /* Settle at final position */
+    }
+    }
 
-.navbar{
-    animation: popdown 1.5s ;
-}
+    .navbar {
+        animation: bounceIn 0.4s ease forwards;
+    }
+
+
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
