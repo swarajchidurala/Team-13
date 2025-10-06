@@ -223,6 +223,10 @@
                 font-size: 1.6em;
             }
         }
+        
+        #childNameField{
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -239,7 +243,7 @@
                 <button type="button" id="studentTab" class="tab active">Student</button>
                 <button type="button" id="parentTab" class="tab">Parent</button>
             </div>
-            <div class="form-group" id="childNameField" style="display: none;">
+            <div class="form-group" id="childNameField">
                 <label for="name">Child Name</label>
                 <input type="text" id="name" name="name" placeholder="Swaraj" required>
             </div>
