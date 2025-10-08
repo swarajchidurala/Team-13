@@ -17,16 +17,19 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Observe all elements with the animation class
-    document.querySelectorAll('.feature-card, .course-card, .testimonial-card').forEach(card => {
+    document.querySelectorAll('.feature-card, .course-card, .testimonial-card, .headpara-card').forEach(card => {
         observer.observe(card);
     });
 
-    // Simple scroll-based parallax for the hero image (optional)
-    const heroImage = document.querySelector('.hero-image-card img');
-    if (heroImage) {
-        window.addEventListener('scroll', () => {
-            const scrollPosition = window.pageYOffset;
-            heroImage.style.transform = `translateY(${scrollPosition * 0.1}px)`;
+    // Smooth scroll for navigation links
+    document.querySelectorAll('nav a').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetId = link.getAttribute('href').substring(1);
+            const targetSection = document.getElementById(targetId);
+            if (targetSection) {
+                targetSection.scrollIntoView({ behavior: 'smooth' });
+            }
         });
-    }
+    });
 });

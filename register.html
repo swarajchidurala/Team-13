@@ -214,6 +214,10 @@
         .confirm-message p {
             margin: 5px;
         }
+        .confirm-message p::before {
+            content: "✔"; /* Checkmark symbol */
+            font-weight: bold;
+        }
         /* Error Message Styling */
         .error-message {
             color: #ff4d4f;
@@ -228,6 +232,11 @@
         }
         .error-message p {
             margin: 5px;
+        }
+        
+        .error-message p::before {
+            content: "⚠"; /* Warning symbol */
+            font-weight: bold;
         }
         
         .error {
@@ -260,7 +269,7 @@
             EduPlatfrom
         </div>
         <h2>Create Your Account</h2>
-        <form action="#" method="POST" id="registerForm">
+        <form action="#" method="POST" id="registerForm" novalidate>
             <div class="tabs">
                 <button type="button" id="studentTab" class="tab active">Student</button>
                 <button type="button" id="parentTab" class="tab">Parent</button>
@@ -269,28 +278,27 @@
             <div id="confirm-message" class="confirm-message"></div>
             <div class="form-group">
                 <label for="name">Full Name</label>
-                <input type="text" id="name" name="name" placeholder="Chidurala Sampath" required>
+                <input type="text" id="name" name="name" placeholder="Chidurala Sampath">
             </div>
             <div class="form-group" id="childNameField">
-                <label for="name">Child Name</label>
-                <input type="text" id="childname" name="childname" placeholder=" Chidurala Swaraj">
+                <label for="childname">Child Name</label>
+                <input type="text" id="childname" name="childname" placeholder="Chidurala Swaraj">
             </div>
             <div class="form-group">
                 <label for="email">Email Address</label>
-                <input type="email" id="email" name="email" placeholder="you@example.com" required>
+                <input type="email" id="email" name="email" placeholder="you@example.com">
             </div>
-
             <div class="form-group">
                 <label for="password">Password</label>
                 <div class="input-with-icon">
-                    <input type="password" id="password" name="password" placeholder="••••••••" required>
+                    <input type="password" id="password" name="password" placeholder="••••••••">
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="confirm-password">Confirm Password</label>
                 <div class="input-with-icon">
-                    <input type="password" id="confirm-password" name="confirm-password" placeholder="••••••••" required>
+                    <input type="password" id="confirm-password" name="confirm-password" placeholder="••••••••">
                     <div class="toggle-password" data-target="confirm-password" id="toggleConfirmPassword">
                         <svg viewBox="0 0 24 24">
                             <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
@@ -350,6 +358,14 @@
         parentTab.classList.remove("active");
         childNameField.style.display= "none"; // Hide child name
         document.getElementById("childname").required = false;
+        document.getElementById("registerForm").reset();
+        document.getElementById("error-message").style.display = 'none';
+        document.getElementById("confirm-message").style.display = 'none';
+        document.getElementById("name").classList.remove("error");
+        document.getElementById("email").classList.remove("error");
+        document.getElementById("password").classList.remove("error");
+        document.getElementById("childname").classList.remove("error");
+        document.getElementById("confirm-password").classList.remove("error");
         });
 
         parentTab.addEventListener("click", () => {
@@ -357,6 +373,14 @@
         studentTab.classList.remove("active");
         childNameField.style.display= "block"; // Show child name
         document.getElementById("childname").required = true;
+        document.getElementById("registerForm").reset();
+        document.getElementById("error-message").style.display = 'none';
+        document.getElementById("confirm-message").style.display = 'none';
+        document.getElementById("name").classList.remove("error");
+        document.getElementById("email").classList.remove("error");
+        document.getElementById("password").classList.remove("error");
+        document.getElementById("childname").classList.remove("error");
+        document.getElementById("confirm-password").classList.remove("error");
         });
 
         document.getElementById("registerForm").addEventListener("submit", function(event) {
@@ -395,6 +419,10 @@
             email.classList.add("error");
             isValid = false;
             errorMsg += "Email is required. ";
+        } else if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email.value.trim())) {
+            email.classList.add("error");
+            isValid = false;
+            errorMsg += "Please enter a valid email address. ";
         }
 
         if (!password.value) {
@@ -424,12 +452,12 @@
 
         if (isValid) {
             document.getElementById("confirm-message").style.display = 'block';
-            document.getElementById("confirm-message").innerHTML = "<p> &#10003; Registration successful! Redirecting to login...</p>";
+            document.getElementById("confirm-message").innerHTML = "<p>  Registration successful! Redirecting to login...</p>";
             setTimeout(function() {
                 window.location.href = "login.html";
             }, 3000); // Show message for 3 seconds before redirect
         } else {
-            document.getElementById("error-message").innerHTML = "<p> &#9888; " + errorMsg + "</p>";
+            document.getElementById("error-message").innerHTML = "<p> " + errorMsg + "</p>";
             document.getElementById("error-message").style.display = 'block';
         }
         });
