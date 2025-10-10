@@ -1,3 +1,10 @@
+ const menuIcon = document.getElementById("menu-icon");
+    const navLinks = document.getElementById("nav-links");
+
+    menuIcon.addEventListener("click", () => {
+      navLinks.classList.toggle("active");
+    });
+
 document.addEventListener('DOMContentLoaded', () => {
 
     // Function to add a class to an element when it's in the viewport
@@ -32,4 +39,14 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    // Hamburger menu toggle
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+
+    if (hamburger && navLinks) {
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+    }
 });

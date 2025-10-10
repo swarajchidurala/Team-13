@@ -20,6 +20,7 @@
             --border-radius: 12px;
             --potential-color:linear-gradient(90deg, #2961eb, #8f34ea);
             --border:1px solid #e0e0e0;
+            --opacity:1;
         }
 
         * {
@@ -189,8 +190,8 @@
 
         .view-as:hover{
             background-color: #e0e0e0;
-            color: var(--primary-color);
-            border: 1px solid var(--primary-color);
+            color: var(--text-dark);
+            /* border: 1px solid var(--primary-color); */
             font-weight: 500;
         }
         .user-profile {
@@ -299,8 +300,8 @@
                 
         .change-tag {
             display: inline-block;
-            background-color: #d4f7d4; /* Light green for positive */
-            color: #4caf50;
+            background-color: rgb(220 252 231 / var(--opacity, 1)); /* Light green for positive */
+            color: rgb(22 163 74);
             padding: 2px 8px;
             border-radius: 12px;
             font-size: 0.8em;
@@ -407,83 +408,151 @@
                         transform: translateY(0); /* Settle at final position */
                     }
                 }
+        
+/* --- Subject Performance --- */
+.course-list {
+    margin-bottom: 30px;
+    animation-delay: 3s;
+    animation: course 0.9s ease forwards;
+    background-color: var(--card-bg);
+    border: var(--border);
+    border-radius: var(--border-radius);
+    padding: 20px;
+}
 
-        
-        .course-item {
-            display: flex;
-            align-items: center;
-            background-color: var(--card-bg);
-            padding: 20px;
-            border: var(--border);
-            border-radius: var(--border-radius);
-            margin-bottom: 15px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-            transition: box-shadow 0.2s;
-        }
-        
-        .course-item:hover {
-            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
-        }
-        
-        .course-item i {
-            font-size: 2rem;
-            color: var(--primary-color);
-            margin-right: 20px;
-        }
-        
-        .course-details {
-            flex-grow: 1;
-        }
-        
-        .course-details h3 {
-            margin-bottom: 2px;
-            font-size: 1.1rem;
-        }
-        
-        .course-details p {
-            font-size: 0.85rem;
-            color: var(--text-light);
-            margin-bottom: 8px;
-        }
-        
-        .progress-bar-container {
-            height: 6px;
-            background-color: #e0e0e0;
-            border-radius: 3px;
-            overflow: hidden;
-        }
-        
-        .progress-bar {
-            height: 100%;
-            border-radius: 3px;
-            background-image: var(--potential-color); /* Blue gradient */
-            transition: width 0.5s ease-in-out;
-        }
-        
-        .course-item:nth-child(1) .progress-bar {
-            background-image: var(--potential-color); /* Purple gradient for Math */
-        }
-        
-        .continue-btn {
-            background-image: var(--potential-color);
-            color: white;
-            border: none;
-            padding: 10px 18px;
-            border-radius: var(--border-radius);
-            font-weight: bold;
-            cursor: pointer;
-            transition: opacity 0.2s, transform 0.1s;
-            white-space: nowrap;
-        }
-        
-        .continue-btn:hover {
-            opacity: 0.9;
-        }
-        /* The animation when clicking the continue button */
-        .continue-btn:active {
-            transform: scale(0.95);
-        }
-        
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.course-card {
+  display: flex;
+  align-items: center;
+  background-color: var(--card-bg);
+  border-radius: var(--border-radius);
+  border: 1px solid #fafafa;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  padding: 15px 20px;
+  width: 100%;
+  margin-bottom: 10px;
+  transition: box-shadow 0.3s ease;
+}
+
+.course-card:hover {
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+}
+
+.course-img {
+  width: 55px;
+  height: 55px;
+  border-radius: 6px;
+  object-fit: cover;
+  margin-right: 15px;
+}
+
+.course-info {
+  flex: 1;
+}
+
+.course-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.course-header h3 {
+  font-size: 16px;
+  color: #07294d;
+  margin-bottom: 2px;
+}
+
+.instructor {
+  font-size: 14px;
+  color: #6a6a6a;
+}
+
+.progress-percent {
+  text-align: right;
+}
+
+.progress-percent h2 {
+  font-size: 22px;
+  color: #07294d;
+  margin-bottom: 2px;
+}
+
+.progress-percent p {
+  font-size: 13px;
+  color: #0a8f75;
+}
+
+.progress-bar {
+  background: #e9ecef;
+  border-radius: 6px;
+  height: 10px;
+  margin: 10px 0;
+  overflow: hidden;
+}
+
+.progress-fill-82 {
+  background: #22c55e;
+  height: 100%;
+  width: 0;
+  border-radius: 6px;
+  animation: fillAnimation 2s ease-out forwards;
+  animation-delay: 0.2s;
+}
+.status-82{
+    color: #22c55e;
+    font-weight: 500;
+}
+.progress-fill-68 {
+  background: #f5b400;
+  height: 100%;
+  width: 0;
+  border-radius: 6px;
+  animation: fillAnimation 2s ease-out forwards;
+  animation-delay: 0.2s;
+}
+.status-68{
+    color: #f5b400;
+    font-weight: 500;
+}
+
+.progress-fill-45 {
+  background: #ef4444;
+  height: 100%;
+  width: 0;
+  border-radius: 6px;
+  animation: fillAnimation 2s ease-out forwards;
+  animation-delay: 0.2s;
+}
+.status-45{
+    color: #ef4444;
+    font-weight: 500;
+}
+/* Animated width using CSS variable */
+.progress-fill {
+  animation: fillAnimation 2s ease-out forwards;
+}
+
+@keyframes fillAnimation {
+  from { width: 0; }
+  to { width: var(--progress); }
+}
+
+.course-footer {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+}
+
+.course-footer p {
+  color: #4a4a4a;
+}
+
+
         /* --- Right Column Sections (Deadlines, Activity, Achievements) --- */
         .deadline-item {
             background-color: var(--card-bg);
@@ -492,7 +561,7 @@
             border-radius: var(--border-radius);
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
             margin-bottom: 30px;
-            border-left: 4px solid #ff3333;
+            border-left: 4px solid #dc2626;
             animation: deadline 0.9s ease forwards;
         }
 
@@ -520,10 +589,10 @@
 
         .deadline-item .date {
             font-weight: bold;
-            color: #ff3333;
+            color: #dc2626;
         }
         .deadline-item button {
-            border: 1px solid #ff3333;
+            border: 1px solid #dc2626;
             border-radius: 8px;
             font-size: 1.2em;
             font-weight: 400;
@@ -534,7 +603,7 @@
             align-items: left;
             width: 100%;
             background-color: var(--card-bg);
-            color: #ff3333;            
+            color: #dc2626;            
             transition: background-color 0.2s ease;
         }
 
@@ -544,7 +613,7 @@
         }
         
         .deadline-details {
-            background-color: #ff33331a;
+            background-color: #dc26261a;
             border-radius: var(--border-radius);
             padding: 10px;
             display: flex;
@@ -607,48 +676,7 @@
             margin-left: auto;
             font-weight: 600;
         }
-
-        .communication-btn {
-            display: grid;
-            gap: 5px;
-            align-items: center;
-            padding: 10px 0;
-            padding-top: 0;
-        }
         
-        .communication-btn button{
-
-            background-color:var(--card-bg);
-            border: 1px solid var(--primary-color);
-            border-radius: 8px;
-            font-size: 1.2em;
-            font-weight: 400;
-            padding: 10px 16px;
-            display: grid;
-            grid: template columns 1fr;
-            align-items: left;
-            width: 100%;
-            color: var(--primary-color);            
-            transition: background-color 0.2s ease;
-        }
-
-        .communication-btn button:hover {
-            background-color: #b8ddfe5b;
-            border: 5px double var(--primary-color);
-            font-weight: 500;
-        }
-
-        .communication-btn i{
-            float: left;
-            margin: 10px;
-            color: var(--primary-color);
-        }
-
-        #icon{
-            float: right;
-            color: var(--text-light);
-        }
-
         .achievement-text h3 {
             font-size: 1rem;
             margin: 0;
@@ -658,6 +686,62 @@
             font-size: 0.8rem;
             color: var(--text-light);
         }
+
+        /* Communication section */
+
+        .communication-section {
+  padding: 20px;
+  margin-bottom: 30px;
+}
+
+.communication-btn {
+  display: flex;
+  flex-direction: column; /* keeps both buttons stacked vertically */
+  gap: 10px;
+  /* padding-top: 10px; */
+}
+
+.button {
+  display: flex;                /* places icon and button in one line */
+  align-items: center;          /* vertically center icon and text */
+  gap: 10px;                    /* space between icon and button */
+}
+
+.communication-btn i {
+  /* font-size: 1.2em; */
+  color: var(--primary-color);
+  margin-left: 5px;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+/* Icon hover animation */
+.communication-btn button {
+  background-color: var(--card-bg);
+  border: 1px solid var(--primary-color);
+  border-radius: 8px;
+  font-size: 1.2em;
+  font-weight: 400;
+  padding: 10px 16px;
+  width: 100%;
+  text-align: center;
+  color: var(--primary-color);
+  transition: all 0.1s ease;
+  cursor: pointer;
+}
+
+.communication-btn button:hover {
+  background-color: #b8ddfe5b;
+  /* border: 2px solid var(--primary-color); */
+  font-weight: 500;
+}
+
+
+
+        #icon{
+            float: right;
+            color: var(--text-light);
+        }
+
 
         /* --- Learning Progress Chart (Placeholder) --- */
         .learning-progress {
@@ -680,6 +764,7 @@
                         transform: translateY(0); /* Settle at final position */
                     }
                 }
+                
         .weekly-time {
             float: right;
             font-weight: bold;
@@ -699,6 +784,80 @@
             width: 100%;
             /* In a real scenario, this is where you'd add bar charts */
         }
+
+        
+    .chart {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-top: 30px;
+      position: relative;
+    }
+
+    /* --- Day labels on top --- */
+    .day {
+      position: absolute;
+      top: 0;
+      transform: translateY(-10px);
+      color: #333;
+      font-weight: 500;
+      font-size: 0.95em;
+      width: 50px;
+      text-align: center;
+    }
+
+    .bar-wrapper {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      width: 50px;
+      height: 8rem;
+      margin-bottom: 20px;
+    }
+
+    .bar {
+        margin-top: 20px;
+      width: 25px;
+      border-radius: 5px 5px 0 0;
+      background: linear-gradient(to top, var(--primary-color), var(--secondary-color));
+      position: relative;
+      animation: grow 1.2s ease forwards;
+      transform-origin: bottom;
+    }
+
+    .bar::after {
+      content: attr(data-value);
+      position: absolute;
+      bottom: -25px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: #555;
+      font-size: 0.9em;
+      font-weight: 300;
+    }
+
+    /* --- Bar Animation --- */
+    @keyframes grow {
+      from {
+        height: 0;
+        opacity: 0.2;
+      }
+      to {
+        height: var(--bar-height);
+        opacity: 1;
+      }
+    }
+
+    /* Sequential animation delay */
+    .bar-wrapper:nth-child(1) .bar { animation-delay: 0s; }
+    .bar-wrapper:nth-child(2) .bar { animation-delay: 0.1s; }
+    .bar-wrapper:nth-child(3) .bar { animation-delay: 0.2s; }
+    .bar-wrapper:nth-child(4) .bar { animation-delay: 0.3s; }
+    .bar-wrapper:nth-child(5) .bar { animation-delay: 0.4s; }
+    .bar-wrapper:nth-child(6) .bar { animation-delay: 0.5s; }
+    .bar-wrapper:nth-child(7) .bar { animation-delay: 0.6s; }
 
         .ripple {
             position: absolute;
@@ -763,7 +922,7 @@
             </header>
             <div class="dashboard-overview">
                 <div class="welcome-banner">
-                    <h1 class="progress-title">Alex Johnson's Progress &NonBreakingSpace;<i class="fas fa-chart-line"></i></h1>
+                    <h1 class="progress-title"> Swaraj's Progress &NonBreakingSpace;<i class="fas fa-chart-line"></i></h1>
                     <p>Monitor your child's learning journey and achievements</p>
                 </div>
 
@@ -795,72 +954,142 @@
             
                 <div class="content-split">
                     <div class="content-left">
+                        <div class="course-list">
                             <h2>Subject Performance</h2>
 
-                            <div class="subject-card good">
-                                <div class="details">
-                                    <span class="subject-name">Advanced Mathematics</span>
-                                    <span class="instructor">Instructor: Dr. Maria Rodriguez</span>
-                                </div>
-                                <div class="progress-bar-container">
-                                    <div class="progress-bar" style="width: 68%;"></div>
-                                </div>
-                                <div class="status-info">
-                                    <span class="percentage">68%</span>
-                                    <span class="status">Good</span>
-                                    <span class="lessons">2 of 4 lessons completed</span>
-                                </div>
-                            </div>
+                            <div class="course-card">
+                                <img src="https://images.pexels.com/photos/220301/pexels-photo-220301.jpeg?auto=compress&cs=tinysrgb&w=300&h=200&fit=crop" 
+                                    alt="Course Image" class="course-img">
 
-                            <div class="subject-card attention">
-                                <div class="details">
-                                    <span class="subject-name">Physics Fundamentals</span>
-                                    <span class="instructor">Instructor: Prof. James Chen</span>
-                                </div>
-                                <div class="progress-bar-container">
-                                    <div class="progress-bar" style="width: 42%;"></div>
-                                </div>
-                                <div class="status-info">
-                                    <span class="percentage">42%</span>
-                                    <span class="status">Needs Attention</span>
-                                    <span class="lessons">2 of 4 lessons completed</span>
-                                </div>
-                            </div>
+                                <div class="course-info">
+                                    <div class="course-header">
+                                    <div>
+                                        <h3>Advanced Mathematics</h3>
+                                        <p class="instructor">Instructor: Dr. Maria Rodriguez</p>
+                                    </div>
+                                    <div class="progress-percent">
+                                        <h2>68%</h2>
+                                        <p>Complete</p>
+                                    </div>
+                                    </div>
 
-                            <div class="subject-card excellent">
-                                <div class="details">
-                                    <span class="subject-name">English Literature</span>
-                                    <span class="instructor">Instructor: Ms. Emily Watson</span>
+                                    <div class="progress-bar">
+                                    <div class="progress-fill-68" style="--progress:68%"></div>
+                                    </div>
+
+                                    <div class="course-footer">
+                                    <p>2 of 4 lessons completed</p>
+                                    <h4 class="status-68">Good</h4>
+                                    </div>
                                 </div>
-                                <div class="progress-bar-container">
-                                    <div class="progress-bar" style="width: 85%;"></div>
                                 </div>
-                                <div class="status-info">
-                                    <span class="percentage">85%</span>
-                                    <span class="status">Excellent</span>
-                                    <span class="lessons">3 of 4 lessons completed</span>
+
+                                <!-- Card 2 -->
+                                <div class="course-card">
+                                    <img src="https://images.pexels.com/photos/159866/books-book-pages-read-literature-159866.jpeg?auto=compress&cs=tinysrgb&w=300&h=200&fit=crop" 
+                                        alt="Course Image" class="course-img">
+
+                                    <div class="course-info">
+                                        <div class="course-header">
+                                            <div>
+                                                <h3>English Literature</h3>
+                                                <p class="instructor">Instructor: Ms. Emily Watson</p>
+                                            </div>
+                                            <div class="progress-percent">
+                                                <h2>45%</h2>
+                                                <p>Complete</p>
+                                            </div>
+                                        </div>
+
+                                            <div class="progress-bar">
+                                                <div class="progress-fill-45" style="--progress:45%"></div>
+                                            </div>
+
+                                            <div class="course-footer">
+                                                <p>3 of 7 lessons completed</p>
+                                                <h4 class="status-45">Average</h4>
+                                            </div>
+                                    </div>
                                 </div>
-                            </div>
+
+                                <!-- Card 3 -->
+                                <div class="course-card">
+                                <img src="https://media.istockphoto.com/id/874157664/photo/classroom-desk-and-drawn-blackboard-of-chemistry-teaching-general-view.jpg?s=612x612&w=0&k=20&c=-aGthcskbfFUxS3Ta6nIpaEFWmgLkqeRvIZntnMMcIA=" 
+                                    alt="Course Image" class="course-img">
+
+                                <div class="course-info">
+                                    <div class="course-header">
+                                    <div>
+                                        <h3>Physics Fundamentals</h3>
+                                        <p class="instructor">Instructor: Prof. James Chen</p>
+                                    </div>
+                                    <div class="progress-percent">
+                                        <h2>82%</h2>
+                                        <p>Complete</p>
+                                    </div>
+                                    </div>
+
+                                    <div class="progress-bar">
+                                    <div class="progress-fill-82" style="--progress:82%"></div>
+                                    </div>
+
+                                    <div class="course-footer">
+                                    <p>5 of 6 lessons completed</p>
+                                    <h4 class="status-82">Excellent</h4>
+                                    </div>
+                                </div>
+                                </div>
+                        </div>
+
                             <div class="learning-progress">
-                                <h2>Learning Progress</h2>
-                                <p>Weekly Study Pattern <span class="weekly-time">20.3h total</span></p>
-                                <div class="progress-chart">
-                                    <div class="chart-label">Mon</div>
-                                    <div class="chart-label">Tue</div>
-                                    <div class="chart-label">Wed</div>
-                                    <div class="chart-label">Thu</div>
-                                    <div class="chart-label">Fri</div>
-                                    <div class="chart-label">Sat</div>
-                                    <div class="chart-label">Sun</div>
-                                </div>
+                                <h2>Weekly Study Pattern</h2>
+                                    <p>Total Study Time <span class="weekly-time">20.31 h</span></p>
+                                    <div class="chart">
+
+                                        <div class="bar-wrapper">
+                                            <div class="day">Mon</div>
+                                            <div class="bar" style="--bar-height: 60px;" data-value="2.5h"></div>
+                                        </div>
+
+                                        <div class="bar-wrapper">
+                                            <div class="day">Tue</div>
+                                            <div class="bar" style="--bar-height: 90px;" data-value="3.2h"></div>
+                                        </div>
+
+                                        <div class="bar-wrapper">
+                                            <div class="day">Wed</div>
+                                            <div class="bar" style="--bar-height: 50px;" data-value="1.8h"></div>
+                                        </div>
+
+                                        <div class="bar-wrapper">
+                                            <div class="day">Thu</div>
+                                            <div class="bar" style="--bar-height: 115px;" data-value="4.1h"></div>
+                                        </div>
+
+                                        <div class="bar-wrapper">
+                                            <div class="day">Fri</div>
+                                            <div class="bar" style="--bar-height: 80px;" data-value="2.9h"></div>
+                                        </div>
+
+                                        <div class="bar-wrapper">
+                                            <div class="day">Sat</div>
+                                            <div class="bar" style="--bar-height: 105px;" data-value="3.7h"></div>
+                                        </div>
+
+                                        <div class="bar-wrapper">
+                                            <div class="day">Sun</div>
+                                            <div class="bar" style="--bar-height: 65px;" data-value="2.1h"></div>
+                                        </div>
                             </div>
-                    </div>       
-                    <div class="content-right">
-                        <div class="rightside">
-                            <div class="deadline-item">
-                                <h2>Need Attention <i class="fas fa-exclamation-triangle" id="icon"></i></h2>
-                                <div class="deadline-details">
-                                    <h3>Calculus Problem Set</h3>
+                        </div>
+
+                        </div>       
+                            <div class="content-right">
+                                <div class="rightside">
+                                    <div class="deadline-item">
+                                        <h2>Need Attention <i class="fas fa-exclamation-triangle" id="icon"></i></h2>
+                                        <div class="deadline-details">
+                                            <h3>Calculus Problem Set</h3>
                                     <p>Advanced Mathematics</p>
                                     <span class="date">22/10/2025</span>
                                 </div>
@@ -883,17 +1112,22 @@
                             <div class="communication-section">
                                 <h2>Communication <i class="fas fa-comments" id="icon"></i></h2>
                                 <div class="communication-btn">
-                                    <div class="button">
-                                        <i class="fas fa-comment"></i>
-                                        <button class="btn full-width">Message Teacher</button>
-                                    </div>
-                                    <div class="button">
-                                        <i class="fas fa-user"></i>
-                                        <button class="btn full-width schedule-btn">Schedule Parent Meeting</button>
-                                    </div>
+
+                                <div class="button">
+                                    <i class="fas fa-comment"></i>
+                                    <button class="btn full-width">Message Teacher</button>
+                                </div>
+
+                                <div class="button">
+                                    <i class="fas fa-user"></i>
+                                    <button class="btn full-width schedule-btn">Schedule Parent Meeting</button>
+                                </div>
+
                                 </div>
                             </div>
                         </div>
+
+
                             
                     </div>
                 </div>

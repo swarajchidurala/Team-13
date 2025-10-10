@@ -19,6 +19,7 @@
             --border-radius: 12px;
             --potential-color:linear-gradient(90deg, #2961eb, #8f34ea);
             --border:1px solid #e0e0e0;
+            --opacity:1;
         }
 
         * {
@@ -328,9 +329,13 @@
         
         /* --- Course List & Item Styles (Continue Learning) --- */
         .course-list {
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             animation-delay: 3s;
             animation: course 0.9s ease forwards;
+            background-color: var(--card-bg);
+            border: var(--border);
+            border-radius: var(--border-radius);
+            padding: 20px;
         }
 
                 /* Course List Animation */
@@ -357,7 +362,7 @@
             align-items: center;
             background-color: var(--card-bg);
             padding: 20px;
-            border: var(--border);
+            border: 1px solid #fafafa;
             border-radius: var(--border-radius);
             margin-bottom: 15px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
@@ -368,10 +373,12 @@
             box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
         }
         
-        .course-item i {
-            font-size: 2rem;
-            color: var(--primary-color);
+        .course-item img {
+            width: 50px;
+            height: 50px;
             margin-right: 20px;
+            border-radius: 5px;
+            object-fit: cover;
         }
         
         .course-details {
@@ -388,6 +395,11 @@
             color: var(--text-light);
             margin-bottom: 8px;
         }
+        .course-details i {
+            margin-right: 0px;
+            opacity: 0.8;
+            font-weight: 100;
+        }
         
         .progress-bar-container {
             height: 6px;
@@ -396,11 +408,19 @@
             overflow: hidden;
         }
         
-        .progress-bar {
+        .progress-fill {
             height: 100%;
             border-radius: 3px;
             background-image: var(--potential-color); /* Blue gradient */
-            transition: width 0.5s ease-in-out;
+            /* transition: width 0.5s ease-in-out; */
+            animation: fillAnimation 2s ease-out forwards;
+            overflow: hidden;
+            animation-delay: 0.9s;
+            opacity: 0;
+        }
+        @keyframes fillAnimation {
+            from { width: 0; opacity: 1; }
+            to { width: var(--progress); opacity: 1; }
         }
         
         .course-item:nth-child(1) .progress-bar {
@@ -411,6 +431,7 @@
             background-image: var(--potential-color);
             color: white;
             border: none;
+            margin-left: 20px;
             padding: 10px 18px;
             border-radius: var(--border-radius);
             font-weight: bold;
@@ -435,7 +456,7 @@
             border-radius: var(--border-radius);
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
             margin-bottom: 30px;
-            border-left: 4px solid #ff3333;
+            border-left: 4px solid #dc2626;
             animation: deadline 0.9s ease forwards;
         }
 
@@ -463,11 +484,11 @@
 
         .deadline-item .date {
             font-weight: bold;
-            color: #ff3333;
+            color: #dc2626;
         }
         
         .deadline-details {
-            background-color: #ff33331a;
+            background-color: rgb(254 242 242 / var(--opacity, 1));
             border-radius: var(--border-radius);
             padding: 10px;
             display: flex;
@@ -521,7 +542,7 @@
         }
 
         .activity-section li i {
-            color: #4CAF50; /* Green for checkmarks */
+            color: rgb(22 163 74 / var(--opacity, 1)); /* Green for checkmarks */
             margin-right: 10px;
             font-size: 1.1rem;
         }
@@ -534,7 +555,15 @@
         .achievement-item {
             display: flex;
             align-items: center;
-            padding: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            height: 60px;
+            margin-bottom: 5px;
+            background-color: rgb(240 253 244 / var(--opacity, 1));
+        }
+
+        .achievement-item i{
+            color: rgb(22 163 74 / var(--opacity, 1));
         }
         
         #icon{
@@ -543,13 +572,14 @@
         }
 
         .achievement-item .badge {
-            font-size: 1.8rem;
+            font-size: 1rem;
             margin-right: 15px;
         }
 
         .achievement-text h3 {
             font-size: 1rem;
             margin: 0;
+            font-weight: 600;
         }
         
         .achievement-text p {
@@ -578,6 +608,7 @@
                         transform: translateY(0); /* Settle at final position */
                     }
                 }
+                
         .weekly-time {
             float: right;
             font-weight: bold;
@@ -597,6 +628,80 @@
             width: 100%;
             /* In a real scenario, this is where you'd add bar charts */
         }
+
+        
+    .chart {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-top: 30px;
+      position: relative;
+    }
+
+    /* --- Day labels on top --- */
+    .day {
+      position: absolute;
+      top: 0;
+      transform: translateY(-10px);
+      color: #333;
+      font-weight: 500;
+      font-size: 0.95em;
+      width: 50px;
+      text-align: center;
+    }
+
+    .bar-wrapper {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      width: 50px;
+      height: 8rem;
+      margin-bottom: 20px;
+    }
+
+    .bar {
+        margin-top: 20px;
+      width: 25px;
+      border-radius: 5px 5px 0 0;
+      background: linear-gradient(to top, var(--primary-color), var(--secondary-color));
+      position: relative;
+      animation: grow 1.2s ease forwards;
+      transform-origin: bottom;
+    }
+
+    .bar::after {
+      content: attr(data-value);
+      position: absolute;
+      bottom: -25px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: #555;
+      font-size: 0.9em;
+      font-weight: 300;
+    }
+
+    /* --- Bar Animation --- */
+    @keyframes grow {
+      from {
+        height: 0;
+        opacity: 0.2;
+      }
+      to {
+        height: var(--bar-height);
+        opacity: 1;
+      }
+    }
+
+    /* Sequential animation delay */
+    .bar-wrapper:nth-child(1) .bar { animation-delay: 0s; }
+    .bar-wrapper:nth-child(2) .bar { animation-delay: 0.1s; }
+    .bar-wrapper:nth-child(3) .bar { animation-delay: 0.2s; }
+    .bar-wrapper:nth-child(4) .bar { animation-delay: 0.3s; }
+    .bar-wrapper:nth-child(5) .bar { animation-delay: 0.4s; }
+    .bar-wrapper:nth-child(6) .bar { animation-delay: 0.5s; }
+    .bar-wrapper:nth-child(7) .bar { animation-delay: 0.6s; }
 
         .ripple {
             position: absolute;
@@ -624,7 +729,7 @@
             50% { background-color: #e0eaff; } /* Light blue flash */
             100% { background-color: var(--card-bg); }
         }
-        
+
     </style>
 
 </head>
@@ -698,24 +803,24 @@
                         <div class="course-list">
                             <h2>Continue Learning</h2>
                             <div class="course-item">
-                                <i class="fas fa-calculator"></i>
+                                <img src="https://images.pexels.com/photos/220301/pexels-photo-220301.jpeg?auto=compress&cs=tinysrgb&w=300&h=200&fit=crop" alt="Advanced Mathematics">
                                 <div class="course-details">
                                     <h3>Advanced Mathematics</h3>
-                                    <p>12 weeks | 68% complete</p>
+                                    <p><i class="fas fa-clock"></i> 12 weeks | <i class="fas fa-bar-chart"></i> 68% complete</p>
                                     <div class="progress-bar-container">
-                                        <div class="progress-bar" style="width: 68%;"></div>
+                                        <div class="progress-fill" style="--progress:68%"></div>
                                     </div>
                                 </div>
                                 <button class="continue-btn">Continue ❯</button>
                             </div>
                             
                             <div class="course-item">
-                                <i class="fas fa-atom"></i>
+                                <img src="https://media.istockphoto.com/id/874157664/photo/classroom-desk-and-drawn-blackboard-of-chemistry-teaching-general-view.jpg?s=612x612&w=0&k=20&c=-aGthcskbfFUxS3Ta6nIpaEFWmgLkqeRvIZntnMMcIA=" alt="Physics Fundamentals">
                                 <div class="course-details">
                                     <h3>Physics Fundamentals</h3>
-                                    <p>10 weeks | 42% complete</p>
+                                    <p><i class="fas fa-clock"></i> 10 weeks | <i class="fas fa-bar-chart"></i> 42% complete</p>
                                     <div class="progress-bar-container">
-                                        <div class="progress-bar" style="width: 42%;"></div>
+                                        <div class="progress-fill" style="--progress:42%"></div>
                                     </div>
                                 </div>
                                 <button class="continue-btn">Continue ❯</button>
@@ -724,16 +829,45 @@
                         
                         <div class="learning-progress">
                             <h2>Learning Progress</h2>
-                            <p>Weekly Study Time <span class="weekly-time">20.3h total</span></p>
-                            <div class="progress-chart">
-                                <div class="chart-label">Mon</div>
-                                <div class="chart-label">Tue</div>
-                                <div class="chart-label">Wed</div>
-                                <div class="chart-label">Thu</div>
-                                <div class="chart-label">Fri</div>
-                                <div class="chart-label">Sat</div>
-                                <div class="chart-label">Sun</div>
-                            </div>
+                            <p>Weekly Study Pattern <span class="weekly-time">20.31 h</span></p>
+                                    <div class="chart">
+
+                                        <div class="bar-wrapper">
+                                            <div class="day">Mon</div>
+                                            <div class="bar" style="--bar-height: 60px;" data-value="2.5h"></div>
+                                        </div>
+
+                                        <div class="bar-wrapper">
+                                            <div class="day">Tue</div>
+                                            <div class="bar" style="--bar-height: 90px;" data-value="3.2h"></div>
+                                        </div>
+
+                                        <div class="bar-wrapper">
+                                            <div class="day">Wed</div>
+                                            <div class="bar" style="--bar-height: 50px;" data-value="1.8h"></div>
+                                        </div>
+
+                                        <div class="bar-wrapper">
+                                            <div class="day">Thu</div>
+                                            <div class="bar" style="--bar-height: 115px;" data-value="4.1h"></div>
+                                        </div>
+
+                                        <div class="bar-wrapper">
+                                            <div class="day">Fri</div>
+                                            <div class="bar" style="--bar-height: 80px;" data-value="2.9h"></div>
+                                        </div>
+
+                                        <div class="bar-wrapper">
+                                            <div class="day">Sat</div>
+                                            <div class="bar" style="--bar-height: 105px;" data-value="3.7h"></div>
+                                        </div>
+
+                                        <div class="bar-wrapper">
+                                            <div class="day">Sun</div>
+                                            <div class="bar" style="--bar-height: 65px;" data-value="2.1h"></div>
+                                        </div>
+
+                                    </div>
                         </div>
                     </div>
                     <div class="content-right">
@@ -763,7 +897,7 @@
                             <div class="achievements-section">
                                 <h2>Recent Achievements<i class="fas fa-trophy" id="icon" ></i></h2>
                                 <div class="achievement-item">
-                                    <span class="badge">🏅</span>
+                                    <span class="badge"><i class="fas fa-trophy"></i></span>
                                     <div class="achievement-text">
                                         <h3>Math Master</h3>
                                         <p>Completed calculus module</p>
@@ -771,7 +905,7 @@
                                 </div>
                                 
                                 <div class="achievement-item">
-                                    <span class="badge">🚀</span>
+                                    <span class="badge"><i class="fas fa-trophy"></i></span>
                                     <div class="achievement-text">
                                         <h3>Perfect Score</h3>
                                         <p>Aced the physics quiz</p>
